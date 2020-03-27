@@ -353,7 +353,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEQkNSakZGTkRWRE56WTNRMFUyTjBVMU16UkNNVVJGUWpSQk1VUkZNekkwUmpNM1FURXpNQSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktcHJvamVjdC5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTcwODE2MDUyNDU1NjQ1Mzg4OTUiLCJhdWQiOlsiY29mZmVlLXByb2plY3QiLCJodHRwczovL3VkYWNpdHktcHJvamVjdC5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg1Mjg1OTU4LCJleHAiOjE1ODUzNzIzNTgsImF6cCI6ImNSTWZxOHpES29NcTExODROMHVCbEFONEdHUHgwQ0Z4Iiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImdldDpkcmlua3MtZGV0YWlsIl19.ApOEhZZHmWS0UHl1kNaD4cMFzRg5Av-LcAPU3DmXlSIip_6gpBNRv-Cruyn2CHjm8QskTiAYwtEQejZbz8KpN1t_Cq77JyWZXuERPBC4q5HU3YwbLZ-fPwyGwskcbOltcdOncedwTpFU498OEuoHH30we3tA5SR3_56DNH67E0q5FomZcXH7-HHnrW2RsjwrkG6l4WYv_E728mZLvlYdi_pNh1hOuAUNAdGDlcrknoGzUOsL066tOebqhSGgupQnN52DvNM6BDSDWaJE85rEsRMztetgEfO6G7sRFU0WGakCMyGTk3Y-MW0Jesa6ZB5IuGZMaEzyhGpgvUG8HmZBgA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEQkNSakZGTkRWRE56WTNRMFUyTjBVMU16UkNNVVJGUWpSQk1VUkZNekkwUmpNM1FURXpNQSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktcHJvamVjdC5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTcwODE2MDUyNDU1NjQ1Mzg4OTUiLCJhdWQiOlsiY29mZmVlLXByb2plY3QiLCJodHRwczovL3VkYWNpdHktcHJvamVjdC5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTg1MzA2NjAzLCJleHAiOjE1ODUzOTMwMDMsImF6cCI6ImNSTWZxOHpES29NcTExODROMHVCbEFONEdHUHgwQ0Z4Iiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImdldDpkcmlua3MtZGV0YWlsIl19.kibAz-V53yRjJhRCwKoFC8DqHRW9UPJz_dqpDq-yJntVpy60645L8UnTgENCtJMcBIvKetYmxEJYKTR1pshmyXP5qligLBWXPkV38gQMzTQXZ3jFncSou4z-ON5HgrvCWKp-dXlxbEh1-5GGplmyJWzNYb0RfG475OtokREXHE7tJZ2HoXCieng7GutLtLZZ-2r7GSti4UBZPQqOgml6NDpPOAPkhQq1Jd0inq90tWuYV5kZQo9ZQWOshwF-W0H8Xt2XrJuCBJ5LkQqz2DgK1DiaCYXNeIfixxV7Og9EYqaqEmfyZM3o5yGQGA2z1Y5zoj4-GMG1NSNFV365YQnqOQ",
 						"type": "string"
 					}
 				]
@@ -484,7 +484,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }\n}"
+							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": [{\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }]\n}"
 						},
 						"url": {
 							"raw": "{{host}}/drinks",
@@ -584,7 +584,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEQkNSakZGTkRWRE56WTNRMFUyTjBVMU16UkNNVVJGUWpSQk1VUkZNekkwUmpNM1FURXpNQSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktcHJvamVjdC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU1NjQzMzYyMDcyMzcwZDViZjM5MzgxIiwiYXVkIjoiY29mZmVlLXByb2plY3QiLCJpYXQiOjE1ODUyODU2NzUsImV4cCI6MTU4NTM3MjA3NSwiYXpwIjoiY1JNZnE4ekRLb01xMTE4NE4wdUJsQU40R0dQeDBDRngiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpkcmlua3MiLCJnZXQ6ZHJpbmtzLWRldGFpbCIsInBhdGNoOmRyaW5rcyIsInBvc3Q6ZHJpbmtzIl19.CXumSvgazk1aqH9ZAWKUkEqNCAbMUnJAl5RZhtCyb6j4qT7wTY_gA0Xy9Erv6N3dw64BOUi2dcsYVNtA83G1Er3JhMQ3hn4AvxMnsje8OXTPjnbQxXUjjifWPl7VtqeaIbs9mDAjGQKJndffqDN9W_bXal9A9E7yvLapjAYDtXxfJRf-0e3o0oghsP45h1PVu-sRklzvaAojwtxW_YI4aNd0g7cYR44eB2UgNGCWVnw69GDE6hkxmwSMtsEbrnyv5MgUwP9_9RsRPCEus15KS00DbEdDQ_KGTslxARj3KWhMvlCniKh4X6-5Pxz9ASp7VAx20wRggDG5am5thIL2gw",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEQkNSakZGTkRWRE56WTNRMFUyTjBVMU16UkNNVVJGUWpSQk1VUkZNekkwUmpNM1FURXpNQSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktcHJvamVjdC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU1NjQzMzYyMDcyMzcwZDViZjM5MzgxIiwiYXVkIjoiY29mZmVlLXByb2plY3QiLCJpYXQiOjE1ODUzMDY0ODUsImV4cCI6MTU4NTM5Mjg4NSwiYXpwIjoiY1JNZnE4ekRLb01xMTE4NE4wdUJsQU40R0dQeDBDRngiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpkcmlua3MiLCJnZXQ6ZHJpbmtzLWRldGFpbCIsInBhdGNoOmRyaW5rcyIsInBvc3Q6ZHJpbmtzIl19.jwfTexOVBvX4UQxseAtptfrgtKp2N4-yw7x2oYJTpnFep-xlpRfPUL5vAI49TE2IGUTCdEWwTHE8j-HG4NqEK10TWf4Zg0d4NcU6-otV6o0cuvbnnVJ2Qvrqlbkh9cwzZb-wqeAVkmv1TYSKVMZxRu6QrR6iqNGgU4INmuf-Id2wqeTFqQdBSjbLsYZaYls1m3zVxCYFyKpF_NSaa6QKoVdvRxqWdJdbN03gIfYHl9Fjg7z8hDHKMu7PKc_1-toQOa7WHZcpL-q-L6-datdlCm-NU2_q-V6M3Q10r3T_-8saVXglGljHgl9dKB6KC4xoWeOLsflXIpbC5il_swIO4w",
 						"type": "string"
 					}
 				]

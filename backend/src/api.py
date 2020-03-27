@@ -27,14 +27,14 @@ CORS(app)
     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
         or appropriate status code indicating reason for failure
 '''
-@app.route('/drinks' , methods=['GET'])
+@app.route('/drinks', methods=['GET'])
 def get_drinks():
-    all_drinks = Drink.query.all()
-    if len(all_drinks) == 0:
-        abort(404)   
-    drinks = [drink.short() for drink in all_drinks]         
+    all_drinks = Drink.query.order_by(Drink.id).all()
+    drinks = [drink.short() for drink in all_drinks]  
+    if drinks is None:
+        abort(404)
 
-    return jsonify({ 'success': True, 'drinks': drinks })
+    return jsonify({'success': True, 'drinks': drinks})
 
 
 '''
@@ -50,12 +50,12 @@ def get_drinks():
 @app.route('/drinks-detail')
 @requires_auth(permission='get:drinks-detail')
 def get_drinks_detail(payload):
-    all_drinks = Drink.query.all()
-    if len(all_drinks) == 0:
-        abort(404)
+    all_drinks = Drink.query.order_by(Drink.id).all()
     drinks = [drink.long() for drink in all_drinks]
+    if drinks is None:
+        abort(404)
 
-    return jsonify({ 'success': True, 'drinks': drinks })
+    return jsonify({'success': True, 'drinks': drinks})
 
 
 '''
@@ -73,10 +73,12 @@ def add_drink(payload):
     req_data = request.get_json()
     title = req_data['title']
     recipe = req_data['recipe']
-    new_drink = Drink(title=title, recipe=json.dumps(recipe))
-    new_drink.insert()
-    new_drink_long = Drink.query.order_by(-Drink.id).first().long()
-    return jsonify({ 'success': True, 'drinks': new_drink_long })
+    try:
+        new_drink = Drink(title=title, recipe=json.dumps(recipe))
+        new_drink.insert()
+        return jsonify({'success': True, 'drinks': new_drink.long()})
+    except Exception:
+        abort(422)
 
 
 '''
@@ -90,6 +92,26 @@ def add_drink(payload):
     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the updated drink
         or appropriate status code indicating reason for failure
 '''
+@app.route('/drinks/<int:drink_id>', methods=['PATCH'])
+@requires_auth(permission='patch:drinks')
+def edit_drink(payload, drink_id):
+    existing_drink = Drink.query.get(drink_id)
+    if existing_drink is None:
+        abort(404)
+
+    req_data = request.get_json()
+    title = req_data.get('title', None)
+    recipe = req_data.get('recipe', None)
+
+    try:
+        if title is not None:
+            existing_drink.title = title
+        if recipe is not None:
+            existing_drink.recipe = recipe
+        existing_drink.update()
+        return jsonify({'success': True, 'drinks': [existing_drink.long()]})
+    except Exception:
+        abort(422)
 
 
 '''
@@ -102,6 +124,19 @@ def add_drink(payload):
     returns status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
         or appropriate status code indicating reason for failure
 '''
+@app.route('/drinks/<int:drink_id>', methods=['DELETE'])
+@requires_auth(permission='delete:drinks')
+def delete_drink(payload, drink_id):
+    existing_drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
+    if existing_drink is None:
+        abort(404)
+    
+    try:
+        existing_drink.delete()
+        return jsonify({'success': True, 'delete': drink_id})
+    except Exception:
+        abort(422)
+
 
 
 ## Error Handling
@@ -131,6 +166,13 @@ def unprocessable(error):
 @TODO implement error handler for 404
     error handler should conform to general task above 
 '''
+@app.errorhandler(422)
+def not_found(error):
+    return jsonify({
+                    "success": False, 
+                    "error": 404,
+                    "message": "not found"
+                    }), 404
 
 
 '''
@@ -139,4 +181,8 @@ def unprocessable(error):
 '''
 @app.errorhandler(AuthError)
 def handle_auth_error(e):
-    return '<h1>ERROR<h1><h2>' + e.error['code'] + ' (' + str(e.status_code) + ')</h2><h3>' + e.error['description'] + '</h3>', e.status_code
+    return jsonify({
+                    "success": False, 
+                    "error": e.status_code,
+                    "message": e.error['description']
+                    }), e.status_code    

@@ -33,10 +33,6 @@ class AuthError(Exception):
 def get_token_auth_header():
     auth = request.headers.get('Authorization', None)
 
-    # raise AuthError({
-    #     'auth': auth
-    # }, 401)
-
     if not auth:
         raise AuthError({
             'code': 'authorization_header_missing',
@@ -88,7 +84,7 @@ def check_permissions(permission, payload):
         raise AuthError({
             'code': 'unauthorized',
             'description': 'Permission not found'
-        }, 403)
+        }, 401)
     return True
 
 '''
